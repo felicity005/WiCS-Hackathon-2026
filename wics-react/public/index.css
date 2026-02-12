@@ -5,6 +5,13 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #FFFD74;
+}
+
+h1 {
+	text-align: center;
+	font-family: "Courier New", monospace;
+	font-size: 50px;
 }
 
 code {
