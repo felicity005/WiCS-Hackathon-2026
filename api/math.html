@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h>MATH</h>
+
+    <input id="search" placeholder="Search (e.g. Python basics)">
+    <button onclick="searchYouTube()">Search</button>
+
+    <div id="results"></div>
+</body>
+</html>
+<script>
+    const API_KEY = "AIzaSyB_8BstZEp03knlXwYXnL17p5MefATH4Ws";
+    
+    function searchYouTube() {
+        const query = document.getElementById("search").value;
+
+        const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=5&q=${encodeURIComponent(query)}&key=${API_KEY}`;
+
+        fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            const resultsDiv = document.getElementById("results");
+            resultsDiv.innerHTML = "";
+
+            data.items.forEach(item => {
+                const videoId = item.id.videoId;
+                const title = item.snippet.title;
+
+                const iframe = `
+                <h3>${title}</h3>
+                <iframe
+                    width="500"
+                    height="300"
+                    src="https://www.youtube.com/embed/${videoId}"
+                    frameborder="10"
+                    allowfullscreen>
+                </iframe>
+                `;
+
+                resultsDiv.innerHTML += iframe;
+            });
+        })
+        .catch(err => console.error(err));
+    }
+
+</script>
+<!-- AIzaSyB_8BstZEp03knlXwYXnL17p5MefATH4Ws -->
