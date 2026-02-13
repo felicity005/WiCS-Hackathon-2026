@@ -2,7 +2,7 @@ import {useState} from "react";
 
 function App() {
   // Youtube API
-  const API_KEY = "AIzaSyB_8BstZEp03knlXwYXnL17p5MefATH4Ws";
+  const API_KEY = "AIzaSyDDNb40PwR1mM-dU7JqGMjX5AQerXFeWz4";
   const [query, setQuery] = useState("");
   const [videos, setVideos] = useState([]);
 
