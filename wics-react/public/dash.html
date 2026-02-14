@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="dash.css">
+    <title>Dashboard</title>
+</head>
+<body>
+     <!-- Skill MAXer -->
+    <div class="topbar">
+        <div class="dash">
+        <strong><a href="index.html" class="options">Skill MAXer</a></strong>
+    </div>
+    </div>
+    <br><br><br><br><br><br><br>
+     <!-- Dashboard -->
+    <div class="dash">
+        <h1>-Dashboard-</h1>
+    </div>
+    <br><br>
+     <!-- Courses -->
+    <div class="dash">
+        <h2>Hop back into learning!</h2>
+    </div>
+    <div class="container">
+        <div class="box">
+            <h3>Algebra 1</h3>
+            <p>Learn about linear equations, quadratic functions, manipulating variables, graphing on the coordinate plane, solving systems of equations, and analyzing!</p>
+        </div>
+        <div class="box">
+            <h3>Calculus 1</h3>
+            <p>Boost your understanding of derivatives, integrals, and optimization!</p>
+        </div>
+        <div class="box">
+            <h3>Python</h3>
+            <p>Become an expert in coding by learning foundational programming concepts in Python!</p>
+        </div>
+        <div class="box">
+            <h3>C++</h3>
+            <p>Want to work with computer memory? Learn C++ today!</p>
+        </div>
+        <div class="box">
+            <h3>Biology 1</h3>
+            <p>Dive deeper into cell structure, photosynthesis, and genetics!</p>
+        </div>
+        <div class="box">
+            <h3>Chemistry 1</h3>
+            <p>Gain knowledge on how to analyze atomic structure, chemical bonding, and organic/inorganic compounds!</p>
+        </div>
+    </div>
+    <!-- Google Searchbar -->
+    <div class="dash" id="searchTitle">
+        <h2>Search up concepts you're stuck on!</h2>
+    </div>
+    <div class="dash" id="searchText">
+        <p>Our customized search bar provides you with the best resources to learn</p>
+    </div>
+    <div class="search-container" id="searchContainer">
+        <script async src="https://cse.google.com/cse.js?cx=c0e8ad7484b2b4a85"></script>
+        <div class="gcse-search"></div>
+    </div>
+    <!-- Youtube Videos -->
+     <br>
+     <div class="dash" id="videoTitle">
+        <h2>You can watch videos on concepts you're stuck on too!</h2>
+    </div>
+    <div class="dash" id="videoText">
+        <p>We provide you with the best videos to learn</p>
+    </div>
+    <div class="video-container">
+        <input id="vid" placeholder="Search...">
+        <button onclick="searchYouTube()">Search</button>
+        <div id="results" class="videos"></div>
+    </div>
+   <!-- Parrot -->
+    <div id="max" class="parrotContainer">
+        <h6>Say Hi to Max!</h6>
+        <img class="behind" src="assets/parrot.png" width="80" height="120"/>
+        <img class="top hidden" src="assets/parrotTalk.png" width="80" height="120"/>
+    </div>
+</body>
+</html>
+
+<script>
+    // Youtube Videos
+    const API_KEY = "AIzaSyDDNb40PwR1mM-dU7JqGMjX5AQerXFeWz4";
+    
+    function searchYouTube() {
+        const query = document.getElementById("vid").value;
+        const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&videoCategoryId=27&type=video&videolength=medium&viewCount&order=relevance&maxResults=15&q=${encodeURIComponent(query)}&key=${API_KEY}`;
+
+        fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            const resultsDiv = document.getElementById("results");
+            resultsDiv.innerHTML = "";
+
+            data.items.forEach(item => {
+                const videoId = item.id.videoId;
+                const title = item.snippet.title;
+
+                const iframe = `
+                <div class="video-card"
+                    <h3>${title}</h3>
+                    <iframe
+                        width="400"
+                        height="200"
+                        src="https://www.youtube.com/embed/${videoId}"
+                        frameborder="10"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                `;
+
+                resultsDiv.innerHTML += iframe;
+            });
+        })
+        .catch(err => console.error(err));
+    }
+    // Parrot
+    const parrotContainer = document.getElementById("max");
+    const talkingParrot = parrotContainer.querySelector(".top");
+
+    parrotContainer.addEventListener("click", () => {
+      talkingParrot.classList.toggle("hidden");
+    });
+</script>
