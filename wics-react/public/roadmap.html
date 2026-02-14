@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1 id="title"></h1>
+<ul id="list"></ul>
+
+<script>
+  const level = localStorage.getItem("level") || "beginner";
+  const CONTENT = {
+    beginner: { title: "Beginner Roadmap", skills: ["Basics","Syntax","Small Projects"] },
+    intermediate: { title: "Intermediate Roadmap", skills: ["State","Routing","Testing"] }
+  };
+
+  const data = CONTENT[level] || CONTENT.beginner;
+  document.getElementById("title").textContent = data.title;
+  document.getElementById("list").innerHTML = data.skills.map(s => `<li>${s}</li>`).join("");
+</script>
+
+</body>
+</html>
