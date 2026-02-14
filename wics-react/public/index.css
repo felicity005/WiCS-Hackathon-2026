@@ -113,7 +113,8 @@ body {
 }
 
 .card:hover {
-    transform: translateY(-8px);
+    transform: translateY(-10px);
+    cursor: pointer;
 }
 
 .card h3 {
