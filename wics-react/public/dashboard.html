@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+  <link rel="stylesheet" href="dashboard.css">
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <title>Dashboard</title>
+</head>
+<body>
+  <!-- Searchbar -->
+  <div class="search-container" id="searchContainer">
+    <script async src="https://cse.google.com/cse.js?cx=c0e8ad7484b2b4a85"></script>
+    <div class="gcse-search"></div>
+  </div>
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <ul class="nav-links">
+      <li><input id="home" type="image" src="assets/home-icon-silhouette-svgrepo-com.svg" width="65" height="25"></a></li>
+      <li><a href="#" id="learn">Learn</a></li>
+      <li><button class="search-button" id="toggle">Search</button></li>
+      <li><a href="#">Analysis</a></li>
+      <li><a href="#">About Us</a></li>
+    </ul>
+  </div>
+  <!-- Learn -->
+  <div class="content">
+    <div class="boxes-container hiddens" id="boxesContainer">
+      <div class="box">
+        <h3>Algebra 1</h3>
+        <p>Learn about linear equations, quadratic functions, and inequalities!</p>
+      </div>
+      <div class="box">
+        <h3>Calculus 1</h3>
+        <p>Boost your understanding of derivatives, integrals, and optimization!</p>
+      </div>
+      <div class="box">
+        <h3>Python</h3>
+        <p>Become an expert in coding by learning foundational programming concepts in Python!</p>
+      </div>
+      <div class="box">
+        <h3>C++</h3>
+        <p>Want to work with computer memory? Learn C++ today!</p>
+      </div>
+      <div class="box">
+        <h3>Biology 1</h3>
+        <p>Dive deeper into cell structure, photosynthesis, and genetics!</p>
+      </div>
+      <div class="box">
+        <h3>Chemistry 1</h3>
+        <p>Gain knowledge on how to analyze atomic structure, chemical bonding, and organic/inorganic compounds!</p>
+      </div>
+    </div>
+   </div>
+  <!-- Analysis -->
+  <div>
+    
+  </div>
+
+  <!-- Parrot -->
+  <div id="max" class="parrotContainer">
+    <h6>Say Hi to Max!</h6>
+    <img class="behind" src="assets/parrot.png" width="80" height="120"/>
+    <img class="top hidden" src="assets/parrotTalk.png" width="80" height="120"/>
+  </div>
+</body>
+</html>
+
+<script>
+    // Home Button
+    const homeButton = document.getElementById("home");
+    homeButton.addEventListener("click", function(){
+        window.location.href = "index.html";
+    });
+    // Searchbar
+    const searchToggle = document.getElementById("toggle");
+    const searchContainer = document.getElementById("searchContainer");
+    
+    searchToggle.addEventListener("click", function(){
+        searchContainer.classList.toggle("active");
+    });
+    // Parrot
+    const parrotContainer = document.getElementById("max");
+    const talkingParrot = parrotContainer.querySelector(".top");
+
+    parrotContainer.addEventListener("click", () => {
+      talkingParrot.classList.toggle("hidden");
+    });
+    // Learn
+    const learnButton = document.getElementById("learn");
+    const boxesContainer = document.getElementById("boxesContainer");
+    
+    learnButton.addEventListener("click", function() {
+      boxesContainer.classList.toggle("hiddens");
+    });
+   
+</script>

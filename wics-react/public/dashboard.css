@@ -3,7 +3,6 @@ h1 {
 	font-family: "Courier New", monospace;
 	font-size: 50px;
 }
-
 * {
     margin: 0;
     padding: 0;
@@ -18,7 +17,7 @@ body {
 }
 
 .sidebar {
-    width: 240px;
+    width: 150px;
     height: 100vh;
     background-color: #f7d774;
     padding: 30px 20px;
@@ -31,6 +30,7 @@ body {
 .sidebar h2 {
     margin-bottom: 40px;
     font-weight: 700;
+    font-size: medium;
     color: #444;
 }
 
@@ -147,4 +147,107 @@ body {
     text-decoration: none;
     color: inherit;
     display: block;
+}
+.search-container {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-left: 30%;
+}
+.search-container.active {
+    display: block;
+}
+#toggle {
+    background: none;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 10px;
+    text-align: left;
+    width: 100%;
+}
+.search-button:hover {
+    text-decoration: none;
+    color: #444;
+    font-weight: 500;
+    padding: 10px 15px;
+    display: block;
+    border-radius: 8px;
+    transition: 0.3s;
+    background-color: #fff3b0 !important;
+    transform: translateX(5px) !important;
+}
+#max {
+    position: fixed; 
+    bottom: 50px; 
+    right: 50px; 
+    cursor: pointer;
+}
+.parrotContainer {
+    position: relative;
+    width: 80px;
+    height: 120px;
+}
+.behind, .top {
+  position: absolute;
+  transition: opacity 0.5s;
+}
+.hidden {
+  opacity:0;
+  pointer-events:none;
+}
+h6 {
+    font-size:9px;
+    margin-bottom:10px;
+}
+.content {
+    position: relative;
+    overflow: hidden;
+}
+.boxes-container {
+    padding: 50px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    margin-left: 500px;
+    max-width: 500px;
+}
+.box {
+    background: white;
+    border-radius: 12px;
+    padding: 30px;
+    margin-left: 10%;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    opacity: 0;
+    transform: scale(0.5) translateY(-50px);
+    animation: popIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+@keyframes popIn {
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+.box:nth-child(1) { animation-delay: 0.1s; }
+.box:nth-child(2) { animation-delay: 0.2s; }
+.box:nth-child(3) { animation-delay: 0.3s; }
+.box:nth-child(4) { animation-delay: 0.4s; }
+.box:nth-child(5) { animation-delay: 0.5s; }
+.box:nth-child(6) { animation-delay: 0.6s; }
+.box:nth-child(7) { animation-delay: 0.7s; }
+.box:nth-child(8) { animation-delay: 0.8s; }
+
+.box h3 {
+    color: #ffa4ed;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+.box p {
+    color: #3f3f3f;
+    font-size: 14px;
+    line-height: 1.5;
+}
+.hiddens {
+    display: none;
 }
