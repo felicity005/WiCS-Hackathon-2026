@@ -1,3 +1,27 @@
+@font-face {
+  font-family: "SN Pro";
+  src: url("../assets/fonts/SNPro-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "SN Pro";
+  src: url("/assets/fonts/SNPro-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+body {
+  font-family: "SN Pro", sans-serif;
+}
+
+:root {
+  --science-blue: #43b2d8;
+  --math-green: #93bd7c;
+  --compsci-yellow: #f0d261;
+}
+
 .roadmap-shell {
   width: min(47.5em, 100%);
   margin: 0 auto;
@@ -27,7 +51,7 @@
   left: 50%;
   width: 0.5em;
   transform: translateX(-50%);
-  background: linear-gradient(180deg, #7bc96f 0%, #d8e8db 100%);
+  background: linear-gradient(180deg, var(--math-green) 0%, var(--science-blue) 50%, var(--compsci-yellow) 100%);
   border-radius: 62.44em;
 }
 
@@ -61,8 +85,20 @@
 }
 
 .roadmap-node.current {
-  border-color: #2da44e;
+  border-color: var(--math-green);
   background: #e9f7ed;
+}
+
+.roadmap-row:nth-child(3n + 1) .roadmap-node {
+  border-color: var(--math-green);
+}
+
+.roadmap-row:nth-child(3n + 2) .roadmap-node {
+  border-color: var(--science-blue);
+}
+
+.roadmap-row:nth-child(3n + 3) .roadmap-node {
+  border-color: var(--compsci-yellow);
 }
 
 .roadmap-node.locked {

@@ -23,6 +23,18 @@
   <script>
     const API_KEY = "AIzaSyDDNb40PwR1mM-dU7JqGMjX5AQerXFeWz4";
     const YT_LIMIT = 6;
+    const SUBJECT_TOPICS = {
+      math: new Set(["Algebra", "Geometry", "Precalculus", "Calculus"]),
+      science: new Set(["Biology", "Chemistry", "Physics"]),
+      compsci: new Set(["Python", "JavaScript", "Java", "C++"])
+    };
+
+    function getSubject(topic) {
+      if (SUBJECT_TOPICS.math.has(topic)) return "math";
+      if (SUBJECT_TOPICS.science.has(topic)) return "science";
+      if (SUBJECT_TOPICS.compsci.has(topic)) return "compsci";
+      return "math";
+    }
 
     function latestTopics() {
       const attempts = JSON.parse(localStorage.getItem("stemQuizAttempts")) || [];
@@ -71,16 +83,18 @@
 
     function renderTopicChips(topics) {
       const chips = document.getElementById("topicChips");
-      chips.innerHTML = topics.map((topic) => `<span class="chip">${topic}</span>`).join("");
+      chips.innerHTML = topics
+        .map((topic) => `<span class="chip chip--${getSubject(topic)}">${topic}</span>`)
+        .join("");
     }
 
     function renderTopicResults(topic, videos) {
       const section = document.createElement("article");
-      section.className = "topic-card";
+      section.className = `topic-card topic-card--${getSubject(topic)}`;
 
       const videoGrid = videos.length
         ? videos.map((v) => `
-            <a class="video-tile" href="${v.url}" target="_blank" rel="noreferrer">
+            <a class="video-tile video-tile--${getSubject(topic)}" href="${v.url}" target="_blank" rel="noreferrer">
               <img src="${v.thumbnail}" alt="${v.title}">
               <div class="video-copy">
                 <h3>${v.title}</h3>

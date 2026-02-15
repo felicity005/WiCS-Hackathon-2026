@@ -10,24 +10,43 @@
 </head>
 <body>
 <main class="roadmap-card">
-  <h1 id="title">Your Roadmap</h1>
-  <p class="subtitle">Progress through each step in order.</p>
-  <section class="path-wrap" id="pathWrap">
-    <div class="path-line"></div>
-    <div id="pathNodes"></div>
-  </section>
+  <h1>Your Roadmaps</h1>
+  <p class="subtitle">Each subject has its own expandable path.</p>
+  <section id="roadmapSections" class="roadmap-sections"></section>
 </main>
 
 <script>
-  const ROADMAP_LENGTH = 9;
-  const FALLBACK_SKILLS = [
+  const ROADMAP_LENGTH = 8;
+  const FALLBACK_SKILLS = {
+    math: [
+      "Math foundations",
+      "Math problem solving",
+      "Math review checkpoint"
+    ],
+    science: [
+      "Science foundations",
+      "Lab reasoning",
+      "Science review checkpoint"
+    ],
+    compsci: [
+      "Programming foundations",
+      "Debugging practice",
+      "Coding review checkpoint"
+    ]
+  };
+  const SUBJECTS = [
+    { key: "math", label: "Math", unit: "Step" },
+    { key: "science", label: "Science", unit: "Step" },
+    { key: "compsci", label: "CompSci", unit: "Step" }
+  ];
+  const LEGACY_FALLBACK = [
     "Goal planning",
     "Learning habits",
     "Weekly review",
     "Challenge project",
     "Mock assessment",
     "Reflection checkpoint"
-  ];
+  ]; 
   const SKILL_BANK = {
     Algebra: ["Linear equations", "Polynomials", "Functions and graphs"],
     Geometry: ["Angles and triangles", "Area and volume", "Coordinate geometry"],
@@ -42,48 +61,76 @@
     "C++": ["Memory and pointers", "STL basics", "Algorithms in C++"]
   };
 
-  function getSelectedTopics() {
+  function getSelectedTopicsBySubject() {
     const attempts = JSON.parse(localStorage.getItem("stemQuizAttempts")) || [];
-    if (!attempts.length) return [];
+    if (!attempts.length) {
+      return { math: [], science: [], compsci: [] };
+    }
+
     const latest = attempts[attempts.length - 1];
-    return [...(latest.math || []), ...(latest.science || []), ...(latest.programming || [])];
+    return {
+      math: latest.math || [],
+      science: latest.science || [],
+      compsci: latest.programming || []
+    };
   }
 
-  function buildRoadmap(selectedTopics) {
+  function buildRoadmap(selectedTopics, subjectKey) {
     const dynamicSkills = [];
     selectedTopics.forEach((topic) => {
       (SKILL_BANK[topic] || []).forEach((skill) => {
         if (!dynamicSkills.includes(skill)) dynamicSkills.push(skill);
       });
     });
-    FALLBACK_SKILLS.forEach((skill) => {
+
+    (FALLBACK_SKILLS[subjectKey] || []).forEach((skill) => {
       if (!dynamicSkills.includes(skill)) dynamicSkills.push(skill);
     });
+
+    LEGACY_FALLBACK.forEach((skill) => {
+      if (!dynamicSkills.includes(skill)) dynamicSkills.push(skill);
+    });
+
     return dynamicSkills.slice(0, ROADMAP_LENGTH);
   }
 
-  function renderRoadmap(skills) {
-    const nodesContainer = document.getElementById("pathNodes");
-    nodesContainer.innerHTML = skills
-      .map((skill, index) => `
-        <div class="path-row ${index % 2 === 0 ? "left" : "right"}">
-          <article class="path-node ${index === 0 ? "current" : ""}">
-            <span class="unit">Unit ${index + 1}</span>
-            <h3>${skill}</h3>
-          </article>
+  function renderSubjectPath(skills, subjectLabel, subjectKey, unitLabel) {
+    const hasData = skills.length > 0;
+    const pathRows = hasData
+      ? skills
+          .map(
+            (skill, index) => `
+          <div class="path-row ${index % 2 === 0 ? "left" : "right"}">
+            <article class="path-node ${index === 0 ? "current" : ""}">
+              <span class="unit">${unitLabel} ${index + 1}</span>
+              <h3>${skill}</h3>
+            </article>
+          </div>
+        `
+          )
+          .join("")
+      : `<p class="empty-note">No ${subjectLabel.toLowerCase()} selections in your latest quiz yet.</p>`;
+
+    return `
+      <details class="subject-dropdown ${subjectKey}" ${hasData ? "open" : ""}>
+        <summary>
+          <span>${subjectLabel} Roadmap</span>
+        </summary>
+        <div class="path-wrap">
+          <div class="path-line"></div>
+          <div class="subject-path">${pathRows}</div>
         </div>
-      `)
-      .join("");
+      </details>
+    `;
   }
 
-  const selectedTopics = getSelectedTopics();
-  const title = selectedTopics.length
-    ? `${selectedTopics.slice(0, 2).join(" + ")} Roadmap`
-    : "Starter STEM Roadmap";
-  const skills = buildRoadmap(selectedTopics);
+  const selectedBySubject = getSelectedTopicsBySubject();
+  const container = document.getElementById("roadmapSections");
+  container.innerHTML = SUBJECTS.map((subject) => {
+    const skills = buildRoadmap(selectedBySubject[subject.key], subject.key);
+    return renderSubjectPath(skills, subject.label, subject.key, subject.unit);
+  }).join("");
 
-  document.getElementById("title").textContent = title;
-  renderRoadmap(skills);
 </script>
 
 </body>

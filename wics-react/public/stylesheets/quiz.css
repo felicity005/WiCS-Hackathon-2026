@@ -1,6 +1,30 @@
+@font-face {
+  font-family: "SN Pro";
+  src: url("../assets/fonts/SNPro-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "SN Pro";
+  src: url("../assets/fonts/SNPro-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
 body {
-    font-family: "Courier New", monospace;
-    background: #f4f6f9;
+  font-family: "SN Pro", sans-serif;
+}
+
+:root {
+  --science-blue: #43b2d8;
+  --math-green: #93bd7c;
+  --compsci-yellow: #f0d261;
+}
+
+body {
+    font-family: "SN Pro", sans-serif;
+    background: #f6f0cf;
     margin: 0;
     padding: 1.25em;
 }
@@ -8,10 +32,10 @@ body {
 .quiz-container {
     max-width: 43.75em;
     margin: auto;
-    background: #f7d774;
+    background: #fffef9;
     padding: 1.875em;
     border-radius: 0.625em;
-    box-shadow: 0 0.3125em 0.9375em black;
+    box-shadow: 0 0.3125em 0.9375em rgba(0, 0, 0, 0.35);
 }
 
 h1 {
@@ -21,10 +45,25 @@ h1 {
 
 .question {
     margin-bottom: 1.562em;
+    border: 0.125em solid #dbdbd5;
+    border-radius: 0.75em;
+    padding: 0.8em;
 }
 
 .question p {
     font-weight: bold;
+}
+
+.question:nth-of-type(1) {
+    border-color: var(--math-green);
+}
+
+.question:nth-of-type(2) {
+    border-color: var(--science-blue);
+}
+
+.question:nth-of-type(3) {
+    border-color: var(--compsci-yellow);
 }
 
 label {
@@ -36,8 +75,8 @@ label {
 button {
     display: block;
     margin: 1.25em auto;
-    background: orange;
-    color: white;
+    background: var(--compsci-yellow);
+    color: #1f2328;
     padding: 0.625em 1.562em;
     border: none;
     border-radius: 0.3125em;
@@ -46,7 +85,7 @@ button {
 }
 
 button:hover {
-    background: #e6b800;
+    filter: brightness(0.95);
 }
 
 .result {
