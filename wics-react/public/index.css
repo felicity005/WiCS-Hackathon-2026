@@ -93,6 +93,7 @@ body {
     font-weight: 600;
     cursor: pointer;
     transition: 0.3s;
+    margin-right: 10px;
 }
 
 .hero button:hover {
@@ -105,6 +106,7 @@ body {
     display: flex;
     gap: 2em;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 .card {
@@ -116,6 +118,9 @@ body {
     box-shadow: 0 0.5em 1.25em black;
     flex: 1 1 15em;
     transition: 0.3s;
+    min-width: 400px;
+    max-width: 400px;
+    margin-left: 70px;
 }
 
 .card:hover {
