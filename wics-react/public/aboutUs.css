@@ -5,3 +5,9 @@ body {
     font-family: "Courier New", monospace;
 	font-size: 25px;
 }
+.container {
+    display: block;
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+}
