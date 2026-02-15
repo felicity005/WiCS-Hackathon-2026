@@ -1,14 +1,14 @@
 h1 {
     text-align: center;
 	font-family: "Courier New", monospace;
-	font-size: 35px;
+	font-size: 2.188em;
     margin-left: 5%;
 }
 h3 {
-    font-size: 15px;
+    font-size: 0.9375em;
 }
 h4 {
-    font-size: 8px;
+    font-size: 0.5em;
 }
 * {
     margin: 0;
@@ -18,21 +18,21 @@ h4 {
 }
 .topbar {
     width: 100%;
-    height: 100px;
+    height: 6.25em;
     background-color: #f7d774;
-    padding: 30px 20px;
+    padding: 1.875em 1.25em;
     position: absolute;
-    box-shadow: 4px 0 10px rgba(0,0,0,0.05);
+    box-shadow: 0.25em 0 0.625em rgba(0,0,0,0.05);
 }
 .options {
     text-decoration: none;
     color: inherit;
     display: block;
     text-align: center;
-    font-size: 50px;
+    font-size: 3.125em;
 }
 .options:hover {
-    transform: translateY(-10px);
+    transform: translateY(-0.625em);
     cursor: pointer;
 }
 .dash {
@@ -46,38 +46,38 @@ body {
 }
 .container {
     display: grid;
-    padding: 50px;
+    padding: 3.125em;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(2, 1fr);
-    gap: 2%;
+    gap: 2em;
 }
 .box {
     display: flex;
     flex-direction: column;
     justify-content: center;
     opacity: 0;
-    transform: scale(0.5) translateY(-50px);
+    transform: scale(0.5) translateY(-3.125em);
     animation: popIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
     background-color: #fffdf5;
-    padding: 15px;
-    border-radius: 15px;
-    box-shadow: 0 8px 20px black;
-    flex: 1 1 250px;
+    padding: 0.9375em;
+    border-radius: 0.9375em;
+    box-shadow: 0 0.5em 1.25em black;
+    flex: 1 1 15.62em;
     transition: 0.3s;
-    min-height: 50px;
+    min-height: 3.125em;
 }
 .box:hover {
-    box-shadow: 0 8px 20px rgba(255, 132, 212, 0.805);
+    box-shadow: 0 0.5em 1.25em rgba(255, 132, 212, 0.805);
     cursor: pointer;
 }
 .box h3 {
     color: #ffa4ff;
-    margin-bottom: 10px;
-    font-size: 18px;
+    margin-bottom: 0.625em;
+    font-size: 1.125em;
 }
 .box p {
     color: #3f3f3f;
-    font-size: 14px;
+    font-size: 0.875em;
     line-height: 1.5;
     flex-grow: 1;
 }
@@ -98,73 +98,73 @@ body {
 
 #searchTitle {
     text-align: center;
-    margin: 40px auto 0 auto;
-    max-width: 600px;
-    padding: 0 30px;
+    margin: 2.5em auto 0 auto;
+    max-width: 37.5em;
+    padding: 0 1.875em;
 }
 #searchText {
     text-align: center;
-    margin: 10px auto 0 auto;
-    max-width: 800px;
-    padding: 0 30px;
+    margin: 0.625em auto 0 auto;
+    max-width: 50em;
+    padding: 0 1.875em;
 }
 .search-container {
-    margin: 20px auto 0 auto;
-    padding: 0 20px;
-    max-width: 600px;
+    margin: 1.25em auto 0 auto;
+    padding: 0 1.25em;
+    max-width: 37.5em;
 }
 #videoTitle {
     text-align: center;
-    margin: 40px auto 0 auto;
-    max-width: 850px;
-    padding: 0 30px;
+    margin: 2.5em auto 0 auto;
+    max-width: 53.12em;
+    padding: 0 1.875em;
 }
 #videoText {
     text-align: center;
-    margin: 10px auto 0 auto;
-    max-width: 500px;
-    padding: 0 30px;
+    margin: 0.625em auto 0 auto;
+    max-width: 31.25em;
+    padding: 0 1.875em;
 }
 .video-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 20px auto 0 auto;
-    padding: 0 150px;
+    margin: 1.25em auto 0 auto;
+    padding: 0 9.375em;
     width: 100%;
 }
 .video-container input, .video-container button {
-    margin: 5px;
+    margin: 0.3125em;
 }
 .video-container button:hover {
     cursor: pointer;
     color:rgb(136, 229, 255);
 }
 #vid {
-    padding: 10px;
-    width: 200px;
+    padding: 0.625em;
+    width: 12.5em;
 }
 .videos {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    padding: 10px;
+    gap: 1.25em;
+    padding: 0.625em;
     width: 100%;
-    max-width: 1200px;
-    margin-left: -300px;
+    max-width: 75em;
+    margin-left: -18.75em;
 }
 
 .video-card {
     background-color: #fffef9;
-    border-radius: 15px;
-    width: 420px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 0.9375em;
+    width: 26.25em;
+    box-shadow: 0 0.25em 0.625em rgba(0, 0, 0, 0.1);
     overflow: hidden;
     transition: transform 0.3s;
 }
 .video-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    transform: translateY(-0.625em);
+    box-shadow: 0 0.5em 1.25em rgba(0, 0, 0, 0.2);
 }
 
 .video-card a {
@@ -172,21 +172,21 @@ body {
     color: inherit;
 }
 .video-card h3 {
-    padding: 10px;
-    font-size: 10px;
+    padding: 0.625em;
+    font-size: 0.625em;
     color: #252525;
     line-height: 1;
 }
 #max {
     position: fixed; 
-    bottom: 50px; 
-    right: 50px; 
+    bottom: 3.125em; 
+    right: 3.125em; 
     cursor: pointer;
 }
 .parrotContainer {
     position: relative;
-    width: 80px;
-    height: 120px;
+    width: 5em;
+    height: 7.5em;
 }
 .behind, .top {
   position: absolute;

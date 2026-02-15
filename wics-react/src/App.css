@@ -10,13 +10,13 @@
 
 .quiz-card,
 .roadmap-card {
-  width: min(760px, 100%);
+  width: min(47.5em, 100%);
   margin: 0 auto;
   padding: 1.5rem;
-  border: 1px solid #d0d7de;
-  border-radius: 16px;
+  border: 0.0625em solid #d0d7de;
+  border-radius: 1em;
   background: #ffffff;
-  box-shadow: 0 14px 28px -26px rgba(18, 36, 52, 0.65);
+  box-shadow: 0 0.875em 1.75em -1.625em rgba(18, 36, 52, 0.65);
 }
 
 .quiz-card h1 {
@@ -30,8 +30,8 @@
 }
 
 .quiz-section {
-  border: 1px solid #d8dee4;
-  border-radius: 10px;
+  border: 0.0625em solid #d8dee4;
+  border-radius: 0.625em;
   padding: 0.9rem 1rem;
   margin-bottom: 0.85rem;
 }
@@ -51,7 +51,7 @@
 .primary-btn {
   margin-top: 0.7rem;
   border: 0;
-  border-radius: 999px;
+  border-radius: 62.44em;
   padding: 0.7rem 1.2rem;
   font-weight: 700;
   background: #2da44e;
