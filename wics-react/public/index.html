@@ -19,7 +19,7 @@
       <li><a href="#">Home</a></li>
       <li><a href="#">Courses</a></li>
       <li><a href="#">Take the quiz!</a></li>
-      <li><a href="#">About Us</a></li>
+      <li><a href="about.html">About Us</a></li>
     </ul>
   </div>
   <div class="main-content">
@@ -31,13 +31,13 @@
       <a href="dash.html" class="options">
         <div class="card">
           <h3>Your dashboard</h3>
-          <p>Take a look at your dashboard</p>
+          <p>Take a look at your dashboard!</p>
         </div>
       </a>
 
       <div class="card">
         <h3>Your courses</h3>
-        <p>Find your courses</p>
+        <p>Find your courses!</p>
       </div>
 
       <div class="card">
@@ -46,6 +46,20 @@
       </div>
     </section>
   </div>
+  <!-- Parrot -->
+    <div id="max" class="parrotContainer">
+        <h4>Say Hi to Max!</h4>
+        <img class="behind" src="assets/parrot.png" width="80" height="120"/>
+        <img class="top hidden" src="assets/parrotTalk.png" width="80" height="120"/>
+    </div>
 </body>
-
 </html>
+<script>
+  // Parrot
+  const parrotContainer = document.getElementById("max");
+  const talkingParrot = parrotContainer.querySelector(".top");
+
+  parrotContainer.addEventListener("click", () => {
+    talkingParrot.classList.toggle("hidden");
+  });
+</script>

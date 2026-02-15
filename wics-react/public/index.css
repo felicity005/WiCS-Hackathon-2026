@@ -104,6 +104,8 @@ body {
 }
 
 .card {
+    justify-content: center;
+    align-items: center;
     background-color: white;
     padding: 25px;
     border-radius: 15px;
@@ -148,4 +150,27 @@ body {
     text-decoration: none;
     color: inherit;
     display: block;
+}
+
+#max {
+    position: fixed; 
+    bottom: 50px; 
+    right: 50px; 
+    cursor: pointer;
+}
+.parrotContainer {
+    position: relative;
+    width: 80px;
+    height: 120px;
+}
+.behind, .top {
+  position: absolute;
+  transition: opacity 0.5s;
+}
+.hidden {
+  opacity:0;
+  pointer-events:none;
+}
+h4 {
+    font-size: 8px;
 }
