@@ -1,38 +1,68 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+.app-shell {
   min-height: 100vh;
+  padding: 2rem 1rem;
+  background: radial-gradient(circle at top, #f5fff7 0%, #f7fbfd 45%, #ffffff 100%);
+  color: #1f2328;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: flex-start;
 }
 
-.App-link {
-  color: #61dafb;
+.quiz-card,
+.roadmap-card {
+  width: min(760px, 100%);
+  margin: 0 auto;
+  padding: 1.5rem;
+  border: 1px solid #d0d7de;
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 0 14px 28px -26px rgba(18, 36, 52, 0.65);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.quiz-card h1 {
+  margin-top: 0;
+  margin-bottom: 0.25rem;
+}
+
+.quiz-card p {
+  margin-top: 0;
+  color: #57606a;
+}
+
+.quiz-section {
+  border: 1px solid #d8dee4;
+  border-radius: 10px;
+  padding: 0.9rem 1rem;
+  margin-bottom: 0.85rem;
+}
+
+.quiz-section legend {
+  font-weight: 700;
+  padding: 0 0.25rem;
+}
+
+.quiz-option {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin: 0.45rem 0;
+}
+
+.primary-btn {
+  margin-top: 0.7rem;
+  border: 0;
+  border-radius: 999px;
+  padding: 0.7rem 1.2rem;
+  font-weight: 700;
+  background: #2da44e;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.primary-btn:hover {
+  background: #288f44;
+}
+
+.action-row {
+  margin-top: 0.5rem;
 }
