@@ -22,6 +22,7 @@
       '<li><a href="index.html">Home</a></li>' +
       '<li><a href="courses.html">Courses</a></li>' +
       '<li><a href="quiz.html">Take the quiz!</a></li>' +
+      '<li><a href="yourresources.html">Resources</a></li>' +
       '<li><a href="roadmap.html">Roadmap</a></li>' +
       '<li><a href="aboutUs.html">About Us</a></li>' +
       "</ul>";
