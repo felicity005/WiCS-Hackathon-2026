@@ -1,27 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8" />
-  <title>SkillsMaxxing</title>
-  <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-  <link rel="stylesheet" href="index.css">
-  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="./favicon.ico" />
+  <title>Skill MAXer</title>
+  <link rel="manifest" href="./manifest.json" />
+  <link rel="stylesheet" href="./index.css" />
+  <link rel="stylesheet" href="./sidebar-component.css">
+  <script defer src="./sidebar-component.js"></script>
 
-  <title>SkillsMaxxing</title>
+  <!-- Don't freak out!!! this is a component; everytime "sidebar-component"
+  is added to a page, you'll have the navigation feature on every page. -->
 </head>
-
 <body>
-  <div id="root"></div>
-  <div class="sidebar">
-    <h2>SkillsMaxxing</h2>
-    <ul class="nav-links">
-      <li><a href="#">Home</a></li>
-      <li><a href="#">Courses</a></li>
-      <li><a href="quiz.html">Take the quiz!</a></li>
-      <li><a href="aboutUs.html">About Us</a></li>
-    </ul>
-  </div>
   <div class="main-content">
     <section class="hero">
       <h1><b>Welcome to SkillsMaxxing</b></h1>
@@ -47,21 +39,12 @@
     </section>
   </div>
   <!-- Parrot -->
-    <div id="max" class="parrotContainer">
-        <h4>Say Hi to Max!</h4>
-        <img class="behind" src="assets/parrot.png" width="80" height="120"/>
-        <img class="top hidden" src="assets/parrotTalk.png" width="80" height="120"/>
-    </div>
+  <div id="max" class="parrotContainer">
+    <h4>Say Hi to Max!</h4>
+    <img class="behind" src="./assets/parrot.png" width="80" height="120"/>
+    <img class="top hidden" src="./assets/parrotTalk.png" width="80" height="120"/>
+  </div>
+
+  <div id="root"></div>
 </body>
-</html>
-<script>
-  // Parrot
-  const parrotContainer = document.getElementById("max");
-  const talkingParrot = parrotContainer.querySelector(".top");
-
-  parrotContainer.addEventListener("click", () => {
-    talkingParrot.classList.toggle("hidden");
-  });
-</script>
-
 </html>

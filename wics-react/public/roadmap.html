@@ -2,23 +2,88 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Path</title>
+    <link rel="stylesheet" href="./roadmap.css">
+    <link rel="stylesheet" href="sidebar-component.css">
+    <script defer src="sidebar-component.js"></script>
 </head>
 <body>
-
-<h1 id="title"></h1>
-<ul id="list"></ul>
+<main class="roadmap-card">
+  <h1 id="title">Your Roadmap</h1>
+  <p class="subtitle">Progress through each step in order.</p>
+  <section class="path-wrap" id="pathWrap">
+    <div class="path-line"></div>
+    <div id="pathNodes"></div>
+  </section>
+</main>
 
 <script>
-  const level = localStorage.getItem("level") || "beginner";
-  const CONTENT = {
-    beginner: { title: "Beginner Roadmap", skills: ["Basics","Syntax","Small Projects"] },
-    intermediate: { title: "Intermediate Roadmap", skills: ["State","Routing","Testing"] }
+  const ROADMAP_LENGTH = 9;
+  const FALLBACK_SKILLS = [
+    "Goal planning",
+    "Learning habits",
+    "Weekly review",
+    "Challenge project",
+    "Mock assessment",
+    "Reflection checkpoint"
+  ];
+  const SKILL_BANK = {
+    Algebra: ["Linear equations", "Polynomials", "Functions and graphs"],
+    Geometry: ["Angles and triangles", "Area and volume", "Coordinate geometry"],
+    Precalculus: ["Trigonometry essentials", "Exponential models", "Limits intuition"],
+    Calculus: ["Derivatives", "Integrals", "Optimization problems"],
+    Biology: ["Cell structure", "Genetics", "Ecosystems"],
+    Chemistry: ["Atomic structure", "Bonding", "Stoichiometry"],
+    Physics: ["Motion and forces", "Energy", "Waves and electricity"],
+    Python: ["Python syntax", "Data structures", "Mini automation scripts"],
+    JavaScript: ["JS fundamentals", "DOM and events", "Async programming"],
+    Java: ["OOP basics", "Collections", "Backend fundamentals"],
+    "C++": ["Memory and pointers", "STL basics", "Algorithms in C++"]
   };
 
-  const data = CONTENT[level] || CONTENT.beginner;
-  document.getElementById("title").textContent = data.title;
-  document.getElementById("list").innerHTML = data.skills.map(s => `<li>${s}</li>`).join("");
+  function getSelectedTopics() {
+    const attempts = JSON.parse(localStorage.getItem("stemQuizAttempts")) || [];
+    if (!attempts.length) return [];
+    const latest = attempts[attempts.length - 1];
+    return [...(latest.math || []), ...(latest.science || []), ...(latest.programming || [])];
+  }
+
+  function buildRoadmap(selectedTopics) {
+    const dynamicSkills = [];
+    selectedTopics.forEach((topic) => {
+      (SKILL_BANK[topic] || []).forEach((skill) => {
+        if (!dynamicSkills.includes(skill)) dynamicSkills.push(skill);
+      });
+    });
+    FALLBACK_SKILLS.forEach((skill) => {
+      if (!dynamicSkills.includes(skill)) dynamicSkills.push(skill);
+    });
+    return dynamicSkills.slice(0, ROADMAP_LENGTH);
+  }
+
+  function renderRoadmap(skills) {
+    const nodesContainer = document.getElementById("pathNodes");
+    nodesContainer.innerHTML = skills
+      .map((skill, index) => `
+        <div class="path-row ${index % 2 === 0 ? "left" : "right"}">
+          <article class="path-node ${index === 0 ? "current" : ""}">
+            <span class="unit">Unit ${index + 1}</span>
+            <h3>${skill}</h3>
+          </article>
+        </div>
+      `)
+      .join("");
+  }
+
+  const selectedTopics = getSelectedTopics();
+  const title = selectedTopics.length
+    ? `${selectedTopics.slice(0, 2).join(" + ")} Roadmap`
+    : "Starter STEM Roadmap";
+  const skills = buildRoadmap(selectedTopics);
+
+  document.getElementById("title").textContent = title;
+  renderRoadmap(skills);
 </script>
 
 </body>

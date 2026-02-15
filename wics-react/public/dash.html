@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="dash.css">
     <title>Dashboard</title>
+  <link rel="stylesheet" href="sidebar-component.css">
+  <script defer src="sidebar-component.js"></script>
 </head>
 <body>
      <!-- SkillsMaxxing -->
@@ -81,6 +83,7 @@
         <p>We provide you with the best videos to learn</p>
     </div>
     <div class="video-container">
+        <label for="vid">Search for a learning video</label>
         <input id="vid" placeholder="Search...">
         <button onclick="searchYouTube()">Search</button>
         <div id="results" class="videos"></div>
@@ -88,8 +91,8 @@
    <!-- Parrot -->
     <div id="max" class="parrotContainer">
         <h4>Say Hi to Max!</h4>
-        <img class="behind" src="assets/parrot.png" width="80" height="120"/>
-        <img class="top hidden" src="assets/parrotTalk.png" width="80" height="120"/>
+        <img class="behind" src="assets/parrot.png" alt="Max the parrot"/>
+        <img class="top hidden" src="assets/parrotTalk.png" alt="Max the parrot talking"/>
     </div>
 </body>
 </html>
@@ -113,13 +116,14 @@
                 const title = item.snippet.title;
 
                 const iframe = `
-                <div class="video-card"
+                <div class="video-card">
                     <h3>${title}</h3>
                     <iframe
                         width="400"
                         height="200"
                         src="https://www.youtube.com/embed/${videoId}"
-                        frameborder="10"
+                        title="${title}"
+                        style="border:0;"
                         allowfullscreen>
                     </iframe>
                 </div>

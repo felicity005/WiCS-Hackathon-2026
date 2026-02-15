@@ -3,7 +3,7 @@ body {
     text-align: center;
     color: #333;
     font-family: "Courier New", monospace;
-	font-size: 25px;
+	font-size: 1em;
 }
 .container {
     display: block;

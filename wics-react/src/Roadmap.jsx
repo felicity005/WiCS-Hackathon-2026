@@ -1,29 +1,32 @@
-// Roadmap.jsx
-import { useLocation } from "react-router-dom";
+import "./Roadmap.css";
 
-const CONTENT = {
-    beginner: { color: "#2b8a3e", title: "Beginner Roadmap", skills: ["Basics", "Syntax", "Small Projects"] },
-    intermediate: { color: "#1f78b4", title: "Intermediate Roadmap", skills: ["State", "Routing", "Testing"] },
-    advanced: { color: "#8a2be2", title: "Advanced Roadmap", skills: ["Performance", "Architecture", "Scale"] },
-};
+function getNodeStatus(index) {
+  if (index === 0) {
+    return "current";
+  }
+  return "locked";
+}
 
-export default function Roadmap() {
-    const params = new URLSearchParams(useLocation().search);
-    const level = (params.get("level") || "beginner").toLowerCase();
-    const data = CONTENT[level] || CONTENT.beginner;
+export default function Roadmap({ title, skills }) {
+  return (
+    <div className="roadmap-shell">
+      <h2>{title}</h2>
+      <p className="roadmap-subtitle">Progress through each step in order.</p>
 
-    return (
-        <div style={{ padding: 24 }}>
-            <h1 style={{ color: data.color }}>{data.title}</h1>
-
-            <div style={{ border: `2px solid ${data.color}`, borderRadius: 8, padding: 16, maxWidth: 600 }}>
-                {data.skills.map((s, i) => (
-                    <div key={i} style={{ display: "flex", alignItems: "center", marginBottom: 12 }}>
-                        <div style={{ width: 12, height: 12, background: data.color, borderRadius: 3, marginRight: 12 }} />
-                        <div>{s}</div>
-                    </div>
-                ))}
-            </div>
-        </div>
-    );
+      <div className="roadmap-track">
+        <div className="roadmap-line" />
+        {skills.map((skill, index) => (
+          <div
+            key={`${skill}-${index}`}
+            className={`roadmap-row ${index % 2 === 0 ? "left" : "right"}`}
+          >
+            <article className={`roadmap-node ${getNodeStatus(index)}`}>
+              <span className="roadmap-unit">Unit {index + 1}</span>
+              <h3>{skill}</h3>
+            </article>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 }
