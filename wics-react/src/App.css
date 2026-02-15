@@ -1,7 +1,31 @@
+@font-face {
+  font-family: "SN Pro";
+  src: url("/assets/fonts/SNPro-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "SN Pro";
+  src: url("/assets/fonts/SNPro-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+body {
+  font-family: "SN Pro", sans-serif;
+}
+
+:root {
+  --science-blue: #43b2d8;
+  --math-green: #93bd7c;
+  --compsci-yellow: #f0d261;
+}
+
 .app-shell {
   min-height: 100vh;
   padding: 2rem 1rem;
-  background: radial-gradient(circle at top, #f5fff7 0%, #f7fbfd 45%, #ffffff 100%);
+  background: radial-gradient(circle at top, #fff8dc 0%, #f6f0cf 100%);
   color: #1f2328;
   display: flex;
   justify-content: center;
@@ -54,13 +78,13 @@
   border-radius: 62.44em;
   padding: 0.7rem 1.2rem;
   font-weight: 700;
-  background: #2da44e;
-  color: #ffffff;
+  background: var(--compsci-yellow);
+  color: #1f2328;
   cursor: pointer;
 }
 
 .primary-btn:hover {
-  background: #288f44;
+  filter: brightness(0.95);
 }
 
 .action-row {

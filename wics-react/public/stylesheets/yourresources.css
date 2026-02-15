@@ -1,12 +1,39 @@
+@font-face {
+  font-family: "SN Pro";
+  src: url("../assets/fonts/SNPro-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "SN Pro";
+  src: url("../assets/fonts/SNPro-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+body {
+  font-family: "SN Pro", sans-serif;
+}
+
 * {
   box-sizing: border-box;
 }
 
+:root {
+  --science-blue: #43b2d8;
+  --math-green: #93bd7c;
+  --compsci-yellow: #f0d261;
+  --paper: #fffef9;
+  --ink: #1f2328;
+  --warm-bg: #f6f0cf;
+}
+
 body {
   margin: 0;
-  background: #fff8dc;
-  color: #1f2328;
-  font-family: "Courier New", monospace;
+  background: radial-gradient(circle at top, #fff8dc 0%, #f6f0cf 100%);
+  color: var(--ink);
+  font-family: "SN Pro", sans-serif;
 }
 
 .resources-shell {
@@ -32,16 +59,28 @@ body {
 }
 
 .chip {
-  background: #f4c430;
   border-radius: 62.5em;
   padding: 0.35em 0.75em;
   font-weight: 700;
 }
 
+.chip--science {
+  background: var(--science-blue);
+}
+
+.chip--math {
+  background: var(--math-green);
+}
+
+.chip--compsci {
+  background: var(--compsci-yellow);
+}
+
 .status-card {
   margin-top: 1.2em;
-  background: #fffef9;
-  border: 0.0625em solid #e0cf8b;
+  background: var(--paper);
+  border: 0.0625em solid #d7d4c8;
+  border-left: 0.5em solid var(--science-blue);
   border-radius: 0.8em;
   padding: 0.9em 1em;
 }
@@ -53,11 +92,24 @@ body {
 }
 
 .topic-card {
-  background: #fffef9;
-  border: 0.0625em solid #e0cf8b;
+  background: var(--paper);
+  border: 0.0625em solid #dfdfd9;
+  border-left: 0.5em solid var(--math-green);
   border-radius: 0.95em;
   padding: 1em;
   box-shadow: 0 0.5em 1.4em -1em rgba(0, 0, 0, 0.45);
+}
+
+.topic-card--science {
+  border-left-color: var(--science-blue);
+}
+
+.topic-card--math {
+  border-left-color: var(--math-green);
+}
+
+.topic-card--compsci {
+  border-left-color: var(--compsci-yellow);
 }
 
 .topic-card h2 {
@@ -78,13 +130,26 @@ body {
   text-decoration: none;
   background: #f9f9f9;
   border: 0.0625em solid #e4e4e4;
+  border-left: 0.35em solid var(--math-green);
   border-radius: 0.8em;
   padding: 0.55em;
   color: #1f2328;
 }
 
+.video-tile--science {
+  border-left-color: var(--science-blue);
+}
+
+.video-tile--math {
+  border-left-color: var(--math-green);
+}
+
+.video-tile--compsci {
+  border-left-color: var(--compsci-yellow);
+}
+
 .video-tile:hover {
-  border-color: #d1b23d;
+  transform: translateY(-0.08em);
 }
 
 .video-tile img {
@@ -109,7 +174,7 @@ body {
 .video-copy span {
   font-size: 0.83em;
   font-weight: 700;
-  color: #7d6000;
+  color: #5e5e5e;
 }
 
 @media (max-width: 52em) {

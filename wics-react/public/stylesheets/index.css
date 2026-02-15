@@ -1,6 +1,31 @@
+@font-face {
+  font-family: "SN Pro";
+  src: url("../assets/fonts/SNPro-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "SN Pro";
+  src: url("../assets/fonts/SNPro-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+body {
+  font-family: "SN Pro", sans-serif;
+}
+
+:root {
+    --science-blue: #43b2d8;
+    --math-green: #93bd7c;
+    --compsci-yellow: #f0d261;
+    --warm-bg: #f6f0cf;
+}
+
 h1 {
 	text-align: center;
-	font-family: "Courier New", monospace;
+	font-family: "SN Pro", sans-serif;
 	font-size: 3.125em;
 }
 
@@ -8,11 +33,11 @@ h1 {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Courier New", monospace;
+    font-family: "SN Pro", sans-serif;
 }
 
 body {
-    background-color: #fff8dc;
+    background-color: var(--warm-bg);
     color: #333;
     display: flex;
 }
@@ -86,7 +111,7 @@ body {
 .hero button {
     align-self: center;
     padding: 0.75em 1.562em;
-    background-color: #f4c430;
+    background-color: var(--compsci-yellow);
     border: none;
     border-radius: 1.562em;
     font-size: 1em;
@@ -97,7 +122,7 @@ body {
 }
 
 .hero button:hover {
-    background-color: #e6b800;
+    filter: brightness(0.95);
     transform: scale(1.05);
 }
 
@@ -115,12 +140,21 @@ body {
     background-color: white;
     padding: 1.562em;
     border-radius: 0.9375em;
-    box-shadow: 0 0.5em 1.25em black;
+    box-shadow: 0 0.5em 1.25em rgba(0, 0, 0, 0.35);
+    border-top: 0.4em solid var(--science-blue);
     flex: 1 1 15em;
     transition: 0.3s;
     min-width: 400px;
     max-width: 400px;
     margin-left: 70px;
+}
+
+.features .card:nth-child(2) {
+    border-top-color: var(--math-green);
+}
+
+.features .card:nth-child(3) {
+    border-top-color: var(--compsci-yellow);
 }
 
 .card:hover {

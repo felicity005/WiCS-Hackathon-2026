@@ -1,3 +1,27 @@
+@font-face {
+  font-family: "SN Pro";
+  src: url("../assets/fonts/SNPro-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "SN Pro";
+  src: url("../assets/fonts/SNPro-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+body {
+  font-family: "SN Pro", sans-serif;
+}
+
+:root {
+  --science-blue: #43b2d8;
+  --math-green: #93bd7c;
+  --compsci-yellow: #f0d261;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -6,7 +30,7 @@ body {
   margin: 0;
   min-height: 100vh;
   padding: 1.5em 1.5em 2em;
-  font-family: "Courier New", monospace;
+  font-family: "SN Pro", sans-serif;
   background: radial-gradient(circle at top, #fff8dc 0%, #fff3bf 42%, #ffe8a1 100%);
   color: #1f2328;
 }
@@ -31,10 +55,53 @@ h1 {
   text-align: center;
 }
 
+.roadmap-sections {
+  display: grid;
+  gap: 0.9em;
+}
+
+.subject-dropdown {
+  border: 0.0625em solid #d9d5ca;
+  border-radius: 0.9em;
+  background: #fffef9;
+  overflow: hidden;
+}
+
+.subject-dropdown summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 0.8em 1em;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.subject-dropdown summary::after {
+  content: "+";
+  font-size: 1.25em;
+}
+
+.subject-dropdown[open] summary::after {
+  content: "-";
+}
+
+.subject-dropdown.math summary {
+  background: #e7f1e1;
+}
+
+.subject-dropdown.science summary {
+  background: #dff2f8;
+}
+
+.subject-dropdown.compsci summary {
+  background: #fbf2cd;
+}
+
 .path-wrap {
   position: relative;
-  margin-top: 0.5em;
-  padding: 0.5em 0;
+  margin-top: 0;
+  padding: 0.7em 0.9em 0.7em;
 }
 
 .path-line {
@@ -45,7 +112,7 @@ h1 {
   transform: translateX(-50%);
   width: 0.5em;
   border-radius: 62.44em;
-  background: linear-gradient(180deg, #2da44e 0%, #c3dfc9 100%);
+  background: linear-gradient(180deg, #cfd4d8 0%, #cfd4d8 100%);
 }
 
 .path-row {
@@ -72,8 +139,51 @@ h1 {
 }
 
 .path-node.current {
-  border-color: #2da44e;
-  background: #e9f7ed;
+  background: #f1f7f4;
+}
+
+.subject-dropdown.math .path-line {
+  background: linear-gradient(180deg, var(--math-green) 0%, #c8dfb8 100%);
+}
+
+.subject-dropdown.science .path-line {
+  background: linear-gradient(180deg, var(--science-blue) 0%, #9ad0e2 100%);
+}
+
+.subject-dropdown.compsci .path-line {
+  background: linear-gradient(180deg, var(--compsci-yellow) 0%, #f5e4a5 100%);
+}
+
+.subject-dropdown.math .path-row:nth-child(3n + 1) .path-node {
+  border-color: var(--math-green);
+}
+
+.subject-dropdown.math .path-row:nth-child(3n + 2) .path-node,
+.subject-dropdown.math .path-row:nth-child(3n + 3) .path-node {
+  border-color: #b6cda7;
+}
+
+.subject-dropdown.science .path-row:nth-child(3n + 1) .path-node {
+  border-color: var(--science-blue);
+}
+
+.subject-dropdown.science .path-row:nth-child(3n + 2) .path-node,
+.subject-dropdown.science .path-row:nth-child(3n + 3) .path-node {
+  border-color: #96c4d3;
+}
+
+.subject-dropdown.compsci .path-row:nth-child(3n + 1) .path-node {
+  border-color: var(--compsci-yellow);
+}
+
+.subject-dropdown.compsci .path-row:nth-child(3n + 2) .path-node,
+.subject-dropdown.compsci .path-row:nth-child(3n + 3) .path-node {
+  border-color: #e6cf78;
+}
+
+.empty-note {
+  margin: 0.4em 0 0.2em;
+  font-size: 0.95em;
 }
 
 .unit {
