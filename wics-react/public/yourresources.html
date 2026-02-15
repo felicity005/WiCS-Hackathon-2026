@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Resources</title>
+  <link rel="stylesheet" href="stylesheets/yourresources.css">
+  <link rel="stylesheet" href="sidebar-component.css">
+  <script defer src="sidebar-component.js"></script>
+</head>
+<body>
+  <main class="resources-shell">
+    <header class="page-head">
+      <h1>Your Resources</h1>
+      <p>Automatic YouTube search based on your latest quiz selections.</p>
+      <div id="topicChips" class="topic-chips"></div>
+    </header>
+
+    <section id="status" class="status-card">Searching YouTube for your selected topics...</section>
+    <section id="results" class="results-grid"></section>
+  </main>
+
+  <script>
+    const API_KEY = "AIzaSyDDNb40PwR1mM-dU7JqGMjX5AQerXFeWz4";
+    const YT_LIMIT = 6;
+
+    function latestTopics() {
+      const attempts = JSON.parse(localStorage.getItem("stemQuizAttempts")) || [];
+      if (!attempts.length) return [];
+      const latest = attempts[attempts.length - 1];
+      const combined = [
+        ...(latest.math || []),
+        ...(latest.science || []),
+        ...(latest.programming || [])
+      ];
+      return [...new Set(combined)];
+    }
+
+    async function getYouTube(topic) {
+      const q = `${topic} tutorial beginner`;
+      const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=${YT_LIMIT}&order=relevance&q=${encodeURIComponent(q)}&key=${API_KEY}`;
+      const response = await fetch(url);
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data.error?.message || "YouTube search failed");
+      }
+
+      const items = (data.items || []).filter((item) => item.id && item.id.videoId);
+      if (!items.length) return [];
+
+      const ids = items.map((item) => item.id.videoId).join(",");
+      const statsUrl = `https://www.googleapis.com/youtube/v3/videos?part=statistics&id=${ids}&key=${API_KEY}`;
+      const statsResponse = await fetch(statsUrl);
+      const statsData = await statsResponse.json();
+
+      const likeMap = {};
+      if (statsResponse.ok) {
+        (statsData.items || []).forEach((video) => {
+          likeMap[video.id] = video.statistics?.likeCount || "0";
+        });
+      }
+
+      return items.map((item) => ({
+        title: item.snippet?.title || "Untitled",
+        url: `https://www.youtube.com/watch?v=${item.id.videoId}`,
+        thumbnail: item.snippet?.thumbnails?.medium?.url || item.snippet?.thumbnails?.default?.url || "",
+        channel: item.snippet?.channelTitle || "Unknown channel",
+        likes: likeMap[item.id.videoId] || "0"
+      }));
+    }
+
+    function renderTopicChips(topics) {
+      const chips = document.getElementById("topicChips");
+      chips.innerHTML = topics.map((topic) => `<span class="chip">${topic}</span>`).join("");
+    }
+
+    function renderTopicResults(topic, videos) {
+      const section = document.createElement("article");
+      section.className = "topic-card";
+
+      const videoGrid = videos.length
+        ? videos.map((v) => `
+            <a class="video-tile" href="${v.url}" target="_blank" rel="noreferrer">
+              <img src="${v.thumbnail}" alt="${v.title}">
+              <div class="video-copy">
+                <h3>${v.title}</h3>
+                <p>${v.channel}</p>
+                <span>${Number(v.likes).toLocaleString()} likes</span>
+              </div>
+            </a>
+          `).join("")
+        : "<p>No YouTube results found for this topic.</p>";
+
+      section.innerHTML = `
+        <h2>${topic}</h2>
+        <div class="videos-grid">${videoGrid}</div>
+      `;
+
+      return section;
+    }
+
+    async function runSearches() {
+      const status = document.getElementById("status");
+      const results = document.getElementById("results");
+      const topics = latestTopics();
+
+      if (!topics.length) {
+        status.textContent = "No quiz selections found yet. Take the quiz first, then return here.";
+        return;
+      }
+
+      renderTopicChips(topics);
+      status.textContent = `Searching ${topics.length} selected topic${topics.length > 1 ? "s" : ""} on YouTube...`;
+
+      const tasks = topics.map(async (topic) => {
+        let videos = [];
+
+        try {
+          videos = await getYouTube(topic);
+        } catch (err) {
+          videos = [];
+        }
+
+        return renderTopicResults(topic, videos);
+      });
+
+      const sections = await Promise.all(tasks);
+      sections.forEach((node) => results.appendChild(node));
+      status.textContent = "Search complete.";
+    }
+
+    runSearches();
+  </script>
+</body>
+</html>
