@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="icon" href="./favicon.ico" />
-  <title>Skill MAXer</title>
+  <title>SkillsMaxxing</title>
   <link rel="manifest" href="./manifest.json" />
   <link rel="stylesheet" href="./index.css" />
   <link rel="stylesheet" href="./sidebar-component.css">
@@ -27,10 +27,12 @@
         </div>
       </a>
 
-      <div class="card">
-        <h3>Your courses</h3>
-        <p>Find your courses!</p>
-      </div>
+      <a href="courses.html" class="options">
+        <div class="card">
+          <h3>Your courses</h3>
+          <p>Find your courses!</p>
+        </div>
+      </a>
 
       <div class="card">
         <h3>Your Path</h3>
@@ -48,3 +50,12 @@
   <div id="root"></div>
 </body>
 </html>
+<script>
+  // Parrot
+    const parrotContainer = document.getElementById("max");
+    const talkingParrot = parrotContainer.querySelector(".top");
+
+    parrotContainer.addEventListener("click", () => {
+      talkingParrot.classList.toggle("hidden");
+    });
+</script>

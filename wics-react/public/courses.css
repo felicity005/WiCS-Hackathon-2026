@@ -2,7 +2,11 @@ h1 {
     text-align: center;
 	font-family: "Courier New", monospace;
 	font-size: 2.188em;
-    margin-left: 5%;
+    margin-left: 9%;
+}
+h2 {
+    font-size: 1.5em;
+    color: rgba(110, 195, 255, 0.805);
 }
 h3 {
     font-size: 0.9375em;
@@ -73,7 +77,7 @@ body {
     box-shadow: 0 0.5em 1.25em black;
     flex: 1 1 15.62em;
     transition: 0.3s;
-    min-height: 3.125em;
+    min-height: 20em;
 }
 .box:hover {
     box-shadow: 0 0.5em 1.25em rgba(255, 132, 212, 0.805);
@@ -105,103 +109,6 @@ body {
 .box:nth-child(7) { animation-delay: 0.7s; }
 .box:nth-child(8) { animation-delay: 0.8s; }
 
-#searchTitle {
-    text-align: center;
-    margin: 2.5em auto 0 auto;
-    max-width: 37.5em;
-    padding: 0 1.875em;
-}
-#searchText {
-    text-align: center;
-    margin: 0.625em auto 0 auto;
-    max-width: 50em;
-    padding: 0 1.875em;
-}
-.search-container {
-    margin: 1.25em auto 0 auto;
-    padding: 0 1.25em;
-    max-width: 37.5em;
-}
-#videoTitle {
-    text-align: center;
-    margin: 2.5em auto 0 auto;
-    max-width: 53.12em;
-    padding: 0 1.875em;
-}
-#videoText {
-    text-align: center;
-    margin: 0.625em auto 0 auto;
-    max-width: 31.25em;
-    padding: 0 1.875em;
-}
-.video-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 1.25em auto 0 auto;
-    padding: 0 9.375em;
-    width: 100%;
-}
-.video-container input, .video-container button {
-    margin: 0.3125em;
-}
-.video-container button:hover {
-    cursor: pointer;
-    color:rgb(136, 229, 255);
-}
-#vid {
-    padding: 0.625em;
-    width: 12.5em;
-}
-.videos {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.25em;
-    padding: 0.625em;
-    width: 100%;
-    max-width: 75em;
-    margin-left: -18.75em;
-}
-
-.video-card {
-    background-color: #fffef9;
-    border-radius: 0.9375em;
-    width: 26.25em;
-    box-shadow: 0 0.25em 0.625em rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    transition: transform 0.3s;
-}
-.video-card:hover {
-    transform: translateY(-0.625em);
-    box-shadow: 0 0.5em 1.25em rgba(0, 0, 0, 0.2);
-}
-
-.video-card a {
-    text-decoration: none;
-    color: inherit;
-}
-.video-card h3 {
-    padding: 0.625em;
-    font-size: 0.625em;
-    color: #252525;
-    line-height: 1;
-}
-#max {
-    position: fixed; 
-    bottom: 3.125em; 
-    right: 3.125em; 
-    cursor: pointer;
-}
-.parrotContainer {
-    position: relative;
-    width: 5em;
-    height: 7.5em;
-}
-.behind, .top {
-  position: absolute;
-  transition: opacity 0.5s;
-}
-.hidden {
-  opacity:0;
-  pointer-events:none;
+.box label {
+    font-size: 1em;
 }

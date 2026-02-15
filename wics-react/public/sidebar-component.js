@@ -17,10 +17,10 @@
     var sidebar = document.createElement("aside");
     sidebar.className = "smx-sidebar-shell";
     sidebar.innerHTML =
-      '<h2>Skill MAXer</h2>' +
+      '<h2>SkillsMaxxing</h2>' +
       '<ul class="smx-sidebar-links">' +
       '<li><a href="index.html">Home</a></li>' +
-      '<li><a href="dash.html">Courses</a></li>' +
+      '<li><a href="courses.html">Courses</a></li>' +
       '<li><a href="quiz.html">Take the quiz!</a></li>' +
       '<li><a href="roadmap.html">Roadmap</a></li>' +
       '<li><a href="aboutUs.html">About Us</a></li>' +
