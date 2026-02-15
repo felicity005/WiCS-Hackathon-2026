@@ -6,12 +6,45 @@
   <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
   <title>Skill MAXer</title>
   <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+  <link rel="stylsheet" href="index.css"/>
   <link rel="stylesheet" href="sidebar-component.css">
   <script defer src="sidebar-component.js"></script>
+
   <!-- Don't freak out!!! this is a component; everytime "sidebar-component"
   is added to a page, you'll have the navigation feature on every page. -->
 </head>
 <body>
+  <div class="main-content">
+    <section class="hero">
+      <h1><b>Welcome to Skill MAXer</b></h1>
+      <button>Begin Your Journey!</button>
+    </section>
+    <section class="features">
+      <a href="dash.html" class="options">
+        <div class="card">
+          <h3>Your dashboard</h3>
+          <p>Take a look at your dashboard!</p>
+        </div>
+      </a>
+
+      <div class="card">
+        <h3>Your courses</h3>
+        <p>Find your courses!</p>
+      </div>
+
+      <div class="card">
+        <h3>Your Path</h3>
+        <p>Take a look at your path to success!</p>
+      </div>
+    </section>
+  </div>
+  <!-- Parrot -->
+  <div id="max" class="parrotContainer">
+    <h4>Say Hi to Max!</h4>
+    <img class="behind" src="assets/parrot.png" width="80" height="120"/>
+    <img class="top hidden" src="assets/parrotTalk.png" width="80" height="120"/>
+  </div>
+
   <div id="root"></div>
 </body>
 </html>
