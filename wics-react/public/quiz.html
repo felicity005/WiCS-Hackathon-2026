@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Your Interests Quiz - Skill MAXer</title>
+  <link rel="stylesheet" href="quiz.css">
+</head>
+
+<body>
+
+  <div class="quiz-container">
+    <h1>Select what you are interested in!</h1>
+
+    <form id="quizForm">
+      <div class="question">
+        <p>1. Select the math courses you are interested in</p>
+        <label><input type="checkbox" name="math" value="Calculus"> Calculus</label>
+        <label><input type="checkbox" name="math" value="Precalculus"> Precalculus</label>
+        <label><input type="checkbox" name="math" value="Algebra"> Algebra</label>
+        <label><input type="checkbox" name="math" value="Geometry"> Geometry</label>
+      </div>
+
+      <div class="question">
+        <p>2. Select the science courses you are interested in</p>
+        <label><input type="checkbox" name="science" value="Chemistry"> Chemistry</label>
+        <label><input type="checkbox" name="science" value="Physics"> Physics</label>
+        <label><input type="checkbox" name="science" value="Biology"> Biology</label>
+      </div>
+
+      <div class="question">
+        <p>3. Select the programming courses you are interested in</p>
+        <label><input type="checkbox" name="programming" value="Python"> Python</label>
+        <label><input type="checkbox" name="programming" value="C++"> C++</label>
+        <label><input type="checkbox" name="programming" value="JavaScript"> JavaScript</label>
+        <label><input type="checkbox" name="programming" value="Java"> Java</label>
+      </div>
+
+      <button type="submit">Finish!</button>
+    </form>
+
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    const form = document.getElementById("quizForm");
+
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+      const getCheckedValues = (name) => {
+        return Array.from(document.querySelectorAll(`input[name="${name}"]:checked`))
+          .map(el => el.value);
+      };
+
+      const interests = {
+        math: getCheckedValues("math"),
+        science: getCheckedValues("science"),
+        programming: getCheckedValues("programming"),
+        date: new Date().toLocaleString()
+      };
+
+      let attempts = JSON.parse(localStorage.getItem("stemQuizAttempts")) || [];
+      attempts.push(interests);
+      localStorage.setItem("stemQuizAttempts", JSON.stringify(attempts));
+
+      displayAttempts();
+
+      form.reset();
+    });
+
+    function displayAttempts() {
+      const resultDiv = document.getElementById("result");
+      const attempts = JSON.parse(localStorage.getItem("stemQuizAttempts")) || [];
+
+      if (attempts.length === 0) {
+        resultDiv.innerHTML = "";
+        return;
+      }
+
+      resultDiv.innerHTML = "<h3>Previous Attempts:</h3>";
+
+      attempts.forEach((attempt, index) => {
+        resultDiv.innerHTML += `
+          <div style="margin-bottom:15px;">
+            <strong>Attempt ${index + 1} (${attempt.date})</strong><br>
+            Math: ${attempt.math.join(", ") || "None"}<br>
+            Science: ${attempt.science.join(", ") || "None"}<br>
+            Programming: ${attempt.programming.join(", ") || "None"}
+          </div>
+        `;
+      });
+    }
+    window.onload = displayAttempts;
+  </script>
+
+</body>
+
+</html>
