@@ -35,6 +35,12 @@ h4 {
     transform: translateY(-10px);
     cursor: pointer;
 }
+.courses {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    text-align: center;
+}
 .dash {
     display:flex;
     align-items: center;
