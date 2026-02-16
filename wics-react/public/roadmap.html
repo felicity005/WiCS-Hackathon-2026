@@ -11,7 +11,7 @@
 <body>
 <main class="roadmap-card">
   <h1>Your Roadmaps</h1>
-  <p class="subtitle">Each subject has its own expandable path.</p>
+  <p class="subtitle">Each selected topic has its own expandable path.</p>
   <section id="roadmapSections" class="roadmap-sections"></section>
 </main>
 
@@ -40,8 +40,8 @@
     { key: "compsci", label: "CompSci", unit: "Step" }
   ];
   const LEGACY_FALLBACK = [
-    "Goal planning",
     "Learning habits",
+    "Goal planning",
     "Weekly review",
     "Challenge project",
     "Mock assessment",
@@ -75,6 +75,15 @@
     };
   }
 
+  function getTopicRoadmaps() {
+    const selected = getSelectedTopicsBySubject();
+    return [
+      ...(selected.math || []).map((topic) => ({ topic, subjectKey: "math" })),
+      ...(selected.science || []).map((topic) => ({ topic, subjectKey: "science" })),
+      ...(selected.compsci || []).map((topic) => ({ topic, subjectKey: "compsci" }))
+    ];
+  }
+
   function buildRoadmap(selectedTopics, subjectKey) {
     const dynamicSkills = [];
     selectedTopics.forEach((topic) => {
@@ -91,10 +100,10 @@
       if (!dynamicSkills.includes(skill)) dynamicSkills.push(skill);
     });
 
-    return dynamicSkills.slice(0, ROADMAP_LENGTH);
+    return dynamicSkills.slice(0, ROADMAP_LENGTH).reverse();
   }
 
-  function renderSubjectPath(skills, subjectLabel, subjectKey, unitLabel) {
+  function renderSubjectPath(skills, titleLabel, subjectKey, unitLabel) {
     const hasData = skills.length > 0;
     const pathRows = hasData
       ? skills
@@ -109,12 +118,12 @@
         `
           )
           .join("")
-      : `<p class="empty-note">No ${subjectLabel.toLowerCase()} selections in your latest quiz yet.</p>`;
+      : `<p class="empty-note">No steps available for ${titleLabel} yet.</p>`;
 
     return `
-      <details class="subject-dropdown ${subjectKey}" ${hasData ? "open" : ""}>
+      <details class="subject-dropdown ${subjectKey}">
         <summary>
-          <span>${subjectLabel} Roadmap</span>
+          <span>${titleLabel} Roadmap</span>
         </summary>
         <div class="path-wrap">
           <div class="path-line"></div>
@@ -124,12 +133,16 @@
     `;
   }
 
-  const selectedBySubject = getSelectedTopicsBySubject();
+  const topicRoadmaps = getTopicRoadmaps();
   const container = document.getElementById("roadmapSections");
-  container.innerHTML = SUBJECTS.map((subject) => {
-    const skills = buildRoadmap(selectedBySubject[subject.key], subject.key);
-    return renderSubjectPath(skills, subject.label, subject.key, subject.unit);
-  }).join("");
+  if (!topicRoadmaps.length) {
+    container.innerHTML = `<p class="empty-note">No quiz selections found yet. Take the quiz first, then come back to see topic roadmaps.</p>`;
+  } else {
+    container.innerHTML = topicRoadmaps.map(({ topic, subjectKey }) => {
+      const skills = buildRoadmap([topic], subjectKey);
+      return renderSubjectPath(skills, topic, subjectKey, "Step");
+    }).join("");
+  }
 
 </script>
 

@@ -27,7 +27,7 @@ h1 {
     text-align: center;
 	font-family: "SN Pro", sans-serif;
 	font-size: 2.188em;
-    margin-left: 5%;
+    margin-left: 0;
 }
 h3 {
     font-size: 0.9375em;
@@ -43,11 +43,20 @@ h4 {
 }
 .topbar {
     width: 100%;
-    height: 6.25em;
+    min-height: 6.25em;
     background-color: var(--compsci-yellow);
     padding: 1.875em 1.25em;
-    position: absolute;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 20;
     box-shadow: 0.25em 0 0.625em rgba(0,0,0,0.05);
+}
+.page-wrap {
+    width: min(82em, 100%);
+    margin: 0 auto;
+    padding-top: 8.5em;
+    padding-bottom: 8em;
 }
 #name {
     cursor: pointer;
@@ -71,8 +80,10 @@ h4 {
 }
 .dash {
     display:flex;
+    justify-content: center;
     align-items: center;
-    margin-left: 50%;
+    margin-left: 0;
+    text-align: center;
 }
 body {
     background-color: var(--warm-bg);
@@ -82,8 +93,10 @@ body {
     display: grid;
     padding: 3.125em;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(2, 1fr);
     gap: 2em;
+    width: 100%;
+    max-width: 78em;
+    margin: 0 auto;
 }
 .box {
     display: flex;
@@ -175,7 +188,7 @@ body {
     align-items: center;
     margin: 1.25em auto 0 auto;
     padding: 0 9.375em;
-    width: 100%;
+    width: min(78em, 100%);
 }
 .video-container input, .video-container button {
     margin: 0.3125em;
@@ -194,8 +207,8 @@ body {
     gap: 1.25em;
     padding: 0.625em;
     width: 100%;
-    max-width: 75em;
-    margin-left: -18.75em;
+    max-width: 78em;
+    margin-left: 0;
 }
 
 .video-card {
@@ -223,8 +236,11 @@ body {
 }
 #max {
     position: fixed; 
-    bottom: 3.125em; 
-    right: 3.125em; 
+    bottom: 1em; 
+    right: 1em; 
+    transform: scale(0.85);
+    transform-origin: bottom right;
+    z-index: 5;
     cursor: pointer;
 }
 .parrotContainer {
@@ -239,4 +255,33 @@ body {
 .hidden {
   opacity:0;
   pointer-events:none;
+}
+
+@media (max-width: 72em) {
+    .container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .videos {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 48em) {
+    .page-wrap {
+        padding-top: 7.5em;
+        padding-bottom: 6em;
+    }
+    .container {
+        grid-template-columns: 1fr;
+        padding: 1.5em;
+    }
+    .video-container {
+        padding: 0 1em;
+    }
+    .videos {
+        grid-template-columns: 1fr;
+    }
+    .video-card {
+        width: 100%;
+    }
 }

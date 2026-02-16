@@ -26,8 +26,8 @@ const SKILL_BANK = {
 };
 
 const FALLBACK_SKILLS = [
-  "Goal planning",
   "Learning habits",
+  "Goal planning",
   "Weekly review",
   "Challenge project",
   "Mock assessment",
@@ -51,7 +51,7 @@ function buildRoadmap(selectedTopics) {
     }
   });
 
-  return dynamicSkills.slice(0, ROADMAP_LENGTH);
+  return dynamicSkills.slice(0, ROADMAP_LENGTH).reverse();
 }
 
 function getRoadmapTitle(selectedTopics) {

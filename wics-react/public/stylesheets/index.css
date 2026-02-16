@@ -83,13 +83,15 @@ body {
 }
 
 .main-content {
-    padding: 3.75em;
-    align-content: center;
+    width: min(80em, 100%);
+    margin: 0 auto;
+    padding: 3.75em 2em 6em;
     flex: 1;
 }
 
 .hero {
-    max-width: 37.5em;
+    max-width: 46em;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -118,7 +120,7 @@ body {
     font-weight: 600;
     cursor: pointer;
     transition: 0.3s;
-    margin-right: 10px;
+    margin-right: 0;
 }
 
 .hero button:hover {
@@ -128,24 +130,26 @@ body {
 
 .features {
     margin-top: 3.75em;
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(14em, 1fr));
     gap: 2em;
-    flex-wrap: wrap;
-    justify-content: center;
+    width: min(72em, 100%);
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .card {
+    display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     background-color: white;
     padding: 1.562em;
     border-radius: 0.9375em;
     box-shadow: 0 0.5em 1.25em rgba(0, 0, 0, 0.35);
     border-top: 0.4em solid;
-    flex: 1 1 15em;
     transition: 0.3s;
-    min-width: 400px;
-    max-width: 400px;
+    min-height: 10.5em;
 }
 
 .features .card:nth-child(1) {
@@ -187,8 +191,10 @@ body {
     }
 
     .main-content {
-        margin-left: 0;
         padding: 1.875em;
+    }
+    .features {
+        grid-template-columns: 1fr;
     }
 }
 
@@ -200,8 +206,10 @@ body {
 
 #max {
     position: fixed; 
-    bottom: 3.125em; 
-    right: 3.125em; 
+    bottom: 1em; 
+    right: 1em; 
+    transform: scale(0.85);
+    transform-origin: bottom right;
     cursor: pointer;
 }
 .parrotContainer {
