@@ -102,15 +102,30 @@
     
     function searchYouTube() {
         const query = document.getElementById("vid").value;
-        const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&videoCategoryId=27&type=video&videolength=medium&viewCount&order=relevance&maxResults=15&q=${encodeURIComponent(query)}&key=${API_KEY}`;
+        const resultsDiv = document.getElementById("results");
+        if (!query.trim()) {
+            resultsDiv.innerHTML = "<p>Please enter a search term.</p>";
+            return;
+        }
+
+        const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&videoDuration=medium&order=relevance&maxResults=15&q=${encodeURIComponent(query)}&key=${API_KEY}`;
 
         fetch(url)
         .then(response => response.json())
         .then(data => {
-            const resultsDiv = document.getElementById("results");
-            resultsDiv.innerHTML = "";
+            if (data.error) {
+                throw new Error(data.error.message || "YouTube API request failed");
+            }
 
-            data.items.forEach(item => {
+            resultsDiv.innerHTML = "";
+            const items = (data.items || []).filter((item) => item.id && item.id.videoId);
+
+            if (!items.length) {
+                resultsDiv.innerHTML = "<p>No videos found for that search.</p>";
+                return;
+            }
+
+            items.forEach(item => {
                 const videoId = item.id.videoId;
                 const title = item.snippet.title;
 
@@ -131,7 +146,10 @@
                 resultsDiv.innerHTML += iframe;
             });
         })
-        .catch(err => console.error(err));
+        .catch(err => {
+            resultsDiv.innerHTML = `<p>Unable to load YouTube videos: ${err.message}</p>`;
+            console.error(err);
+        });
     }
     // Parrot
     const parrotContainer = document.getElementById("max");

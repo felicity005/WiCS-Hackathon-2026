@@ -88,7 +88,7 @@
         .join("");
     }
 
-    function renderTopicResults(topic, videos) {
+    function renderTopicResults(topic, videos, errorMessage) {
       const section = document.createElement("article");
       section.className = `topic-card topic-card--${getSubject(topic)}`;
 
@@ -103,7 +103,7 @@
               </div>
             </a>
           `).join("")
-        : "<p>No YouTube results found for this topic.</p>";
+        : `<p>${errorMessage || "No YouTube results found for this topic."}</p>`;
 
       section.innerHTML = `
         <h2>${topic}</h2>
@@ -128,19 +128,24 @@
 
       const tasks = topics.map(async (topic) => {
         let videos = [];
+        let errorMessage = "";
 
         try {
           videos = await getYouTube(topic);
         } catch (err) {
           videos = [];
+          errorMessage = err.message;
         }
 
-        return renderTopicResults(topic, videos);
+        return renderTopicResults(topic, videos, errorMessage);
       });
 
       const sections = await Promise.all(tasks);
       sections.forEach((node) => results.appendChild(node));
-      status.textContent = "Search complete.";
+      const hasAnyVideo = Array.from(results.querySelectorAll(".video-tile")).length > 0;
+      status.textContent = hasAnyVideo
+        ? "Search complete."
+        : "No YouTube results loaded. Check API key, quota, and allowed referrers.";
     }
 
     runSearches();
