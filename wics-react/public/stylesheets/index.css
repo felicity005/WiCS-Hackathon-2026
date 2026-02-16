@@ -86,11 +86,13 @@ body {
     padding: 3.75em;
     align-content: center;
     flex: 1;
+    margin-top: 9em;
 }
 
 .hero {
-    max-width: 37.5em;
+    /* max-width: 37.5em; */
     display: flex;
+    justify-content: center;
     flex-direction: column;
     align-items: center;
 }
@@ -103,7 +105,8 @@ body {
 
 .hero p {
     font-size: 1.125em;
-    margin-bottom: 1.875em;
+    margin-top: -2.5em;
+    margin-bottom: 2.5em;
     line-height: 1.6;
     color: #555;
 }

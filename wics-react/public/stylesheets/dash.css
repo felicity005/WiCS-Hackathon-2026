@@ -27,7 +27,6 @@ h1 {
     text-align: center;
 	font-family: "SN Pro", sans-serif;
 	font-size: 2.188em;
-    margin-left: 5%;
 }
 h3 {
     font-size: 0.9375em;
@@ -51,6 +50,7 @@ h4 {
 }
 #name {
     cursor: pointer;
+    margin-right: 20%;
 }
 .options {
     text-decoration: none;
@@ -71,8 +71,8 @@ h4 {
 }
 .dash {
     display:flex;
+    justify-content: center;
     align-items: center;
-    margin-left: 50%;
 }
 body {
     background-color: var(--warm-bg);
