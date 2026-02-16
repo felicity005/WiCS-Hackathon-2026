@@ -83,8 +83,8 @@ body {
 }
 
 .main-content {
-    margin-left: 1em;
     padding: 3.75em;
+    align-content: center;
     flex: 1;
 }
 
@@ -141,12 +141,15 @@ body {
     padding: 1.562em;
     border-radius: 0.9375em;
     box-shadow: 0 0.5em 1.25em rgba(0, 0, 0, 0.35);
-    border-top: 0.4em solid var(--science-blue);
+    border-top: 0.4em solid;
     flex: 1 1 15em;
     transition: 0.3s;
     min-width: 400px;
     max-width: 400px;
-    margin-left: 70px;
+}
+
+.features .card:nth-child(1) {
+    border-top-color: var(--science-blue);
 }
 
 .features .card:nth-child(2) {
@@ -163,7 +166,7 @@ body {
 }
 
 .card h3 {
-    margin-bottom: 0.9375em;
+    margin-bottom: 1em;
     color: #444;
 }
 

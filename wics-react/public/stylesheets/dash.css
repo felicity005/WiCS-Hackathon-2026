@@ -72,7 +72,7 @@ h4 {
 .dash {
     display:flex;
     align-items: center;
-    margin-left: 40%;
+    margin-left: 50%;
 }
 body {
     background-color: var(--warm-bg);
