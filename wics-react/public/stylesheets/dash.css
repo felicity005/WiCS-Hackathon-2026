@@ -80,8 +80,8 @@ h4 {
 }
 .dash {
     display:flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     margin-left: 0;
     text-align: center;
 }
@@ -236,8 +236,8 @@ body {
 }
 #max {
     position: fixed; 
-    bottom: 1em; 
-    right: 1em; 
+    bottom: 1em;
+    right: 1em;
     transform: scale(0.85);
     transform-origin: bottom right;
     z-index: 5;
